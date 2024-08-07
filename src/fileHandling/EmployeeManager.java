@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class EmployeeManager {
     public static final String FILE_NAME = "employee.txt";
-    static List<Employee> employees = new ArrayList<>();
+    static List<Employee> employees;
     public static void main(String[] args) {
+        employees = readEmployeefromFile();
         Scanner scanner = new Scanner(System.in);
 
         while(true){
@@ -25,7 +26,7 @@ public class EmployeeManager {
                     addEmployee(scanner);
                     break;
                 case 2:
-                    readEmployeefromFile();
+                    displayEmployees();
                     break;
 
                 case 3:
@@ -90,18 +91,19 @@ public class EmployeeManager {
         return null;
     }
 
-    private static void readEmployeefromFile() {
+    private static List<Employee> readEmployeefromFile() {
+        List<Employee> employees = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))){
             String line;
+
             while ((line = reader.readLine()) != null){
                 employees.add(Employee.readFromFile(line));
-            }
-            for (Employee employee:employees){
-                System.out.println(employee);
+
             }
         } catch (IOException e){
             e.printStackTrace();
         }
+        return employees;
     }
 
     public static void writeEmployeeToFile() {
@@ -117,20 +119,23 @@ public class EmployeeManager {
 
     public static void addEmployee(Scanner scanner) {
 
-        System.out.print("Enter EMployee Id:" );
+        System.out.print("Enter Employee Id:" );
         int empId = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Enter EMployee Name:" );
+        System.out.print("Enter Employee Name:" );
         String  name = scanner.nextLine();
 
-        System.out.print("Enter EMployee Salary:" );
+        System.out.print("Enter Employee Salary:" );
         double salary = scanner.nextDouble();
 
         Employee newEmployee = new Employee(empId,name,salary);
         employees.add(newEmployee);
         writeEmployeeToFile();
     }
-
-
+    public static void displayEmployees() {
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
 }

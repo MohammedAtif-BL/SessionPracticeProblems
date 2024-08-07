@@ -1,0 +1,29 @@
+Rules for writing JSON
+1. Data is in name/value pairs
+2. Data is separated by commas
+3. Curly braces hold objects
+4. Square brackets hold arrays
+5. Values can be of any type like integer, String,array, boolean etc.
+
+jsonObjetc.address.street
+jsonObjetc = {
+    "name": "Test",
+    "age": 30,
+    "isEmployee": true,
+    "address":
+    [
+    {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA"
+    },
+    {
+            "street": "123 Main St",
+            "city": "Anytown",
+            "state": "CA"
+     }
+    ]
+    "phoneNumbers": ["555-555-5555", "555-123-4567"]
+}
+
+jo
